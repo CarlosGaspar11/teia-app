@@ -2,6 +2,7 @@ import type { Metadata, Viewport} from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/variables.css";
 import "./globals.css";
+import "material-symbols/outlined.css";
 
 export const viewport: Viewport = {
   width: "device-width",

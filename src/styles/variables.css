@@ -1,11 +1,42 @@
 :root {
-  --cor-primaria: #1d4ed8;
-  --cor-fundo: #f5f6fa;
-  --cor-texto: #1a1a1a;
-  --cor-erro: #dc2626;
-  --cor-sucesso: #16a34a;
+  /* Marca */
+  --cor-primaria: #b0251c;        
+  --cor-primaria-escura: #8f1d16;  
+  --cor-primaria-suave: #ffdad5;   
+
+  /* Fundos e superfícies */
+  --cor-fundo: #f9f9ff;    
+  --cor-superficie: #ffffff;  
+  --cor-superficie-alt: #f1f3ff;  
+  --cor-superficie-forte: #e1e8fd; 
+
+  /* Textos */
+  --cor-texto: #141b2b;   
+  --cor-texto-secundario: #5a413d;  
+  --cor-texto-suave: #ac9f9d;     
+
+  /* Estados */
+  --cor-sucesso: #00855b;         
+  --cor-sucesso-texto: #006947;     
+  --cor-sucesso-suave: #d6fdec;     
+  --cor-erro: #b0251c;              
+  --cor-escuro: #141b2b;           
+
+  /* Espaçamento e forma */
   --espaco-1: 8px;
   --espaco-2: 16px;
   --espaco-3: 24px;
-  --raio: 12px;
+  --raio: 16px;
+  --raio-pequeno: 12px;
+  --raio-pilula: 999px;
+  --sombra-card: 0 2px 12px rgba(20, 27, 43, 0.06);
+  
+  /* Espaçamento e forma */
+  --espaco-1: 0.8rem;
+  --espaco-2: 1.6rem;
+  --espaco-3: 2.4rem;
+  --raio: 1.6rem;
+  --raio-pequeno: 1.2rem;
+  --raio-pilula: 999px;
+  --sombra-card: 0 2px 12px rgba(20, 27, 43, 0.06);
 }
