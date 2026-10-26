@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Icone from "@/components/Icone";
 import styles from "./login.module.css";
+import { fazerLogin } from "@/lib/auth";
 
 type Perfil = "aluno" | "empresa" | "admin";
 
@@ -23,16 +24,24 @@ export default function LoginPage() {
   const [erro, setErro] = useState("");
 
   const atual = PERFIS.find((p) => p.id === perfil)!;
+  
+  const [carregando, setCarregando] = useState(false);
 
-  function entrar(e: React.FormEvent) {
+  async function entrar(e: React.FormEvent) {
     e.preventDefault();
     if (!email || !senha) {
       setErro("Preencha o e-mail e a senha.");
       return;
     }
     setErro("");
-    // TEMPORÁRIO: depois vamos validar no Supabase e usar o perfil real da conta.
-    router.push(`/${perfil}`);
+    setCarregando(true);
+    const { perfil: conta, erro: msg } = await fazerLogin(email, senha, perfil);
+    setCarregando(false);
+    if (msg || !conta) {
+      setErro(msg ?? "Não foi possível entrar.");
+      return;
+    }
+    router.push(`/${conta.role}`);
   }
 
   return (
@@ -106,14 +115,14 @@ export default function LoginPage() {
 
         {erro && <p className={styles.erro}>{erro}</p>}
 
-        <button type="submit" className={styles.botao}>
-          Entrar na Plataforma <Icone nome="arrow_forward" />
+        <button type="submit" className={styles.botao} disabled={carregando}>
+          {carregando ? "Entrando..." : <>Entrar na Plataforma <Icone nome="arrow_forward" /></>}
         </button>
       </form>
 
       {perfil !== "admin" && (
         <p className={styles.cadastro}>
-          Primeiro acesso? <Link href="/login">Cadastre-se</Link>
+          Primeiro acesso? <Link href="/cadastro">Cadastre-se</Link>
         </p>
       )}
     </main>
