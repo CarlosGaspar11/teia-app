@@ -17,7 +17,7 @@ const ABAS: Record<Papel, { href: string; nome: string; icone: string }[]> = {
   ],
   admin: [
     { href: "/admin", nome: "Início", icone: "home" },
-    { href: "/admin/curriculos", nome: "Currículos", icone: "description" },
+    { href: "/admin/alunos", nome: "Alunos", icone: "groups" },
   ],
 };
 
