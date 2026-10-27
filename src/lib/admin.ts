@@ -68,3 +68,31 @@ export async function listarVagasRecentes(): Promise<VagaResumo[]> {
     .limit(5);
   return (data ?? []) as unknown as VagaResumo[];
 }
+
+export type EmpresaResumo = {
+  id: string;
+  nome: string;
+  email: string | null;
+  vagas: { count: number }[];
+};
+
+export async function listarEmpresas(): Promise<EmpresaResumo[]> {
+  const { data } = await supabase
+    .from("profiles")
+    .select("id, nome, email, vagas(count)")
+    .eq("role", "empresa")
+    .order("nome");
+  return (data ?? []) as unknown as EmpresaResumo[];
+}
+
+export async function buscarEmpresa(
+  id: string
+): Promise<{ id: string; nome: string; email: string | null } | null> {
+  const { data } = await supabase
+    .from("profiles")
+    .select("id, nome, email")
+    .eq("id", id)
+    .eq("role", "empresa")
+    .maybeSingle();
+  return data ?? null;
+}
