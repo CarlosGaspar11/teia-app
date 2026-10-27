@@ -1,17 +1,16 @@
 "use client";
 
 import { usePerfil } from "@/lib/usePerfil";
-import BotaoSair from "@/components/BotaoSair";
+import AppShell from "@/components/AppShell";
+import EmConstrucao from "@/components/EmConstrucao";
 
 export default function EmpresaPage() {
   const perfil = usePerfil("empresa");
-  if (!perfil) return <p style={{ padding: "2.4rem" }}>Carregando...</p>;
+  if (!perfil) return <p>Carregando...</p>;
 
   return (
-    <main>
-      <h1>Olá, {perfil.nome}!</h1>
-      <p>Tela da Empresa</p>
-      <BotaoSair />
-    </main>
+    <AppShell perfil={perfil}>
+      <EmConstrucao titulo={`Olá, ${perfil.nome}`} texto="O painel da empresa (vagas e candidatos) será montado aqui." />
+    </AppShell>
   );
 }

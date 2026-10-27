@@ -1,9 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Icone from "@/components/Icone";
 import { sairDaConta } from "@/lib/auth";
 
-export default function BotaoSair() {
+export default function BotaoSair({ className }: { className?: string }) {
   const router = useRouter();
 
   async function sair() {
@@ -12,8 +13,8 @@ export default function BotaoSair() {
   }
 
   return (
-    <button type="button" onClick={sair}>
-      Sair
+    <button type="button" className={className} onClick={sair}>
+      <Icone nome="logout" /> Sair da conta
     </button>
   );
 }

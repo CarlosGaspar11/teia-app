@@ -1,0 +1,143 @@
+.carregando {
+  padding: var(--espaco-3);
+}
+
+.saudacao {
+  margin: var(--espaco-1) 0 var(--espaco-2);
+}
+.saudacao h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+}
+.saudacao p {
+  margin-top: 0.4rem;
+  font-size: 1.4rem;
+  color: var(--cor-texto-secundario);
+}
+
+.cartao {
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra-card);
+  padding: var(--espaco-2);
+}
+
+.curriculo {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.curriculo strong {
+  display: block;
+  font-size: 1.6rem;
+}
+.curriculo span {
+  font-size: 1.3rem;
+  color: var(--cor-texto-secundario);
+}
+
+.icone {
+  width: 4.8rem;
+  height: 4.8rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cor-superficie-alt);
+  border-radius: var(--raio-pequeno);
+  color: var(--cor-primaria);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.botaoPequeno {
+  margin-left: auto;
+  padding: 1rem 1.6rem;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-primaria);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.secao {
+  margin-top: var(--espaco-3);
+}
+.secao h2 {
+  margin-bottom: 1.2rem;
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.itemTexto {
+  flex: 1;
+  min-width: 0;
+}
+.itemTexto strong {
+  display: block;
+  font-size: 1.5rem;
+}
+.itemTexto span {
+  font-size: 1.3rem;
+  color: var(--cor-texto-secundario);
+}
+
+.selo,
+.seloNeutro {
+  padding: 0.6rem 1rem;
+  border-radius: var(--raio-pilula);
+  font-size: 1.2rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.selo {
+  background: var(--cor-primaria-suave);
+  color: var(--cor-primaria);
+}
+.seloNeutro {
+  background: var(--cor-superficie-alt);
+  color: var(--cor-texto-secundario);
+}
+
+.vaga {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.vagaTopo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.vagaRodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bolsa {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.botao {
+  padding: 1.1rem 1.8rem;
+  border-radius: var(--raio-pequeno);
+  background: var(--cor-primaria);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.botao:active {
+  background: var(--cor-primaria-escura);
+}

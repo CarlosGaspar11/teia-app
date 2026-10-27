@@ -1,0 +1,94 @@
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem var(--espaco-2);
+  background: var(--cor-fundo);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.marca img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.marcaTexto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.marcaNome {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+.marcaNome span {
+  font-weight: 500;
+}
+.marcaArea {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-primaria);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.conteudo {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: var(--espaco-1) var(--espaco-2) 10rem;
+}
+
+.nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: var(--cor-superficie);
+  border-top: 1px solid var(--cor-superficie-alt);
+  box-shadow: 0 -2px 12px rgba(20, 27, 43, 0.06);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.navInterna {
+  max-width: 48rem;
+  margin: 0 auto;
+  display: flex;
+}
+
+.aba {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 1rem 0 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+}
+.ativa {
+  color: var(--cor-primaria);
+}
+.ativa :global(.material-symbols-outlined) {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}

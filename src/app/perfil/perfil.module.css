@@ -1,0 +1,95 @@
+.carregando {
+  padding: var(--espaco-3);
+}
+
+.titulo {
+  margin: var(--espaco-1) 0 var(--espaco-2);
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+
+.topo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding: var(--espaco-3) var(--espaco-2);
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra-card);
+}
+.topo h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.avatar {
+  width: 8rem;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-primaria);
+  color: #fff;
+  font-size: 3.6rem;
+  font-weight: 800;
+}
+
+.selo {
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--raio-pilula);
+  background: var(--cor-primaria-suave);
+  color: var(--cor-primaria);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.dados {
+  list-style: none;
+  margin-top: var(--espaco-2);
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra-card);
+}
+.dados li {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.4rem var(--espaco-2);
+  color: var(--cor-primaria);
+}
+.dados li + li {
+  border-top: 1px solid var(--cor-superficie-alt);
+}
+.dados div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.dados span {
+  font-size: 1.2rem;
+  color: var(--cor-texto-secundario);
+}
+.dados strong {
+  color: var(--cor-texto);
+  font-size: 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+.sair {
+  width: 100%;
+  margin-top: var(--espaco-3);
+  height: 5.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  box-shadow: var(--sombra-card);
+  color: var(--cor-primaria);
+  font-size: 1.6rem;
+  font-weight: 700;
+}

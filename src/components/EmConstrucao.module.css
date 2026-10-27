@@ -1,0 +1,23 @@
+.titulo {
+  margin: var(--espaco-1) 0 var(--espaco-2);
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+
+.caixa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: var(--espaco-3) var(--espaco-2);
+  text-align: center;
+  background: var(--cor-superficie);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra-card);
+  color: var(--cor-texto-secundario);
+  font-size: 1.4rem;
+}
+.caixa :global(.material-symbols-outlined) {
+  font-size: 4rem;
+  color: var(--cor-primaria);
+}
