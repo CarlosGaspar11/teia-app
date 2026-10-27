@@ -13,7 +13,7 @@ const ABAS: Record<Papel, { href: string; nome: string; icone: string }[]> = {
   ],
   empresa: [
     { href: "/empresa", nome: "Início", icone: "home" },
-    { href: "/empresa/curriculos", nome: "Currículos", icone: "description" },
+    { href: "/empresa/candidatos", nome: "Candidatos", icone: "groups" },
   ],
   admin: [
     { href: "/admin", nome: "Início", icone: "home" },

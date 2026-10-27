@@ -7,7 +7,9 @@ export type Curriculo = {
   nome_arquivo: string;
   arquivo_path: string;
   created_at: string;
+  curriculo_anterior_id: string | null;
   feedbacks: Feedback[];
+  candidaturas: { count: number }[];
 };
 
 export type AlunoResumo = {
@@ -19,7 +21,8 @@ export type AlunoResumo = {
 
 const BUCKET = "curriculos";
 const LIMITE_BYTES = 5 * 1024 * 1024;
-const CAMPOS = "id, nome_arquivo, arquivo_path, created_at, feedbacks(id, texto, created_at)";
+const CAMPOS =
+  "id, nome_arquivo, arquivo_path, created_at, curriculo_anterior_id, feedbacks(id, texto, created_at), candidaturas(count)";
 
 export function dataBR(iso: string): string {
   return new Date(iso).toLocaleDateString("pt-BR", {
@@ -31,11 +34,14 @@ export function dataBR(iso: string): string {
   });
 }
 
-// Devolve null se deu certo, ou a mensagem de erro
-export async function enviarCurriculo(alunoId: string, arquivo: File): Promise<string | null> {
+export async function enviarCurriculo(
+  alunoId: string,
+  arquivo: File,
+  anteriorId: string | null = null
+): Promise<{ id: string | null; erro: string | null }> {
   const ehPdf = arquivo.type === "application/pdf" || arquivo.name.toLowerCase().endsWith(".pdf");
-  if (!ehPdf) return "Envie um arquivo em PDF.";
-  if (arquivo.size > LIMITE_BYTES) return "O PDF deve ter no máximo 5 MB.";
+  if (!ehPdf) return { id: null, erro: "Envie um arquivo em PDF." };
+  if (arquivo.size > LIMITE_BYTES) return { id: null, erro: "O PDF deve ter no máximo 5 MB." };
 
   const nomeSeguro = arquivo.name
     .normalize("NFD")
@@ -46,16 +52,24 @@ export async function enviarCurriculo(alunoId: string, arquivo: File): Promise<s
   const { error: erroUpload } = await supabase.storage
     .from(BUCKET)
     .upload(caminho, arquivo, { contentType: "application/pdf" });
-  if (erroUpload) return "Não foi possível enviar o arquivo. Tente novamente.";
+  if (erroUpload) return { id: null, erro: "Não foi possível enviar o arquivo. Tente novamente." };
 
-  const { error: erroBanco } = await supabase
+  const { data, error: erroBanco } = await supabase
     .from("curriculos")
-    .insert({ aluno_id: alunoId, nome_arquivo: arquivo.name, arquivo_path: caminho });
-  if (erroBanco) {
+    .insert({
+      aluno_id: alunoId,
+      nome_arquivo: arquivo.name,
+      arquivo_path: caminho,
+      curriculo_anterior_id: anteriorId,
+    })
+    .select("id")
+    .single();
+
+  if (erroBanco || !data) {
     await supabase.storage.from(BUCKET).remove([caminho]);
-    return "Não foi possível registrar o currículo.";
+    return { id: null, erro: "Não foi possível registrar o currículo." };
   }
-  return null;
+  return { id: data.id as string, erro: null };
 }
 
 export async function listarCurriculos(alunoId: string): Promise<Curriculo[]> {
@@ -68,6 +82,20 @@ export async function listarCurriculos(alunoId: string): Promise<Curriculo[]> {
   const lista = (data ?? []) as unknown as Curriculo[];
   lista.forEach((c) => c.feedbacks.sort((a, b) => a.created_at.localeCompare(b.created_at)));
   return lista;
+}
+
+export async function vagasDoCurriculo(
+  curriculoId: string
+): Promise<{ titulo: string; empresa_nome: string }[]> {
+  const { data } = await supabase
+    .from("candidaturas")
+    .select("vagas(titulo, empresa_nome)")
+    .eq("curriculo_id", curriculoId);
+
+  const lista = (data ?? []) as unknown as {
+    vagas: { titulo: string; empresa_nome: string } | null;
+  }[];
+  return lista.map((l) => l.vagas).filter((v): v is NonNullable<typeof v> => v !== null);
 }
 
 export async function apagarCurriculo(c: Curriculo): Promise<string | null> {
@@ -112,3 +140,4 @@ export async function enviarFeedback(curriculoId: string, texto: string): Promis
   if (error) return "Não foi possível enviar o feedback.";
   return null;
 }
+
